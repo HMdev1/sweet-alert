@@ -2,17 +2,21 @@
 
 ![A success alert](demos/1XySJiz.png)
 
-[![Latest Version](https://img.shields.io/github/release/uxweb/sweet-alert.svg?style=flat-square)](https://github.com/uxweb/sweet-alert/releases)
+[![Latest Version](https://img.shields.io/github/release/HMdev1/sweet-alert.svg?style=flat-square)](https://github.com/HMdev1/sweet-alert/releases)
 [![StyleCI](https://styleci.io/repos/38935942/shield)](https://styleci.io/repos/38935942)
-[![Total Downloads](https://img.shields.io/packagist/dt/uxweb/sweet-alert.svg?style=flat-square)](https://packagist.org/packages/uxweb/sweet-alert)
+[![Total Downloads](https://img.shields.io/packagist/dt/HMdev1/sweet-alert.svg?style=flat-square)](https://packagist.org/packages/HMdev1/sweet-alert)
 
 ## Installation
 
 Require the package using Composer.
 
 ```bash
-composer require yousefyahya/sweet-alert
+composer require HMdev1/sweet-alert
 ```
+
+This repository is the maintained fork for Laravel 13 compatibility.
+
+For Laravel 13 projects already depending on `yousefyahya/sweet-alert`, this fork declares `replace` compatibility so it can be used as a drop-in replacement from a VCS repository.
 
 If using laravel < 5.5 include the service provider and alias within `config/app.php`.
 
@@ -180,7 +184,7 @@ For a general information alert, just do: `alert('Some message');` (same as `ale
 
 #### Middleware Groups
 
-First register the middleware in web middleware groups by simply adding the middleware class `UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class` into the \$middlewareGroups of your app/Http/Kernel.php class:
+For Laravel 10 and earlier, register the middleware in the `web` group inside `app/Http/Kernel.php`:
 
 ```php
 protected $middlewareGroups = [
@@ -196,7 +200,22 @@ protected $middlewareGroups = [
 ];
 ```
 
-> Make sure you register the middleware within the 'web' group only.
+> Make sure you register the middleware within the `web` group only.
+
+For Laravel 11, 12 and 13, register it in `bootstrap/app.php`:
+
+```php
+use UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert;
+use Illuminate\Foundation\Configuration\Middleware;
+
+return Application::configure(basePath: dirname(__DIR__))
+  ->withMiddleware(function (Middleware $middleware) {
+    $middleware->web(append: [
+      ConvertMessagesIntoSweetAlert::class,
+    ]);
+  })
+  ->create();
+```
 
 #### Route Middleware
 

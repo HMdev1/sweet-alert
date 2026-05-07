@@ -1,5 +1,5 @@
 {
-  "name": "yousefyahya/sweet-alert",
+  "name": "hmdev1/sweet-alert",
   "description": "A simple PHP package to show Sweet Alerts with the Laravel Framework",
   "keywords": [
     "laravel",
@@ -15,15 +15,14 @@
     }
   ],
   "require": {
-    "php": ">=7.0",
-    "illuminate/support": "~5.0|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
-    "illuminate/session": "~5.0|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0"
+    "php": "^8.1",
+    "illuminate/support": "^9.0|^10.0|^11.0|^12.0|^13.0",
+    "illuminate/session": "^9.0|^10.0|^11.0|^12.0|^13.0"
   },
   "require-dev": {
-    "roave/security-advisories": "dev-latest",
-    "phpunit/phpunit": "^7.0|^8.0|^9.0|^10.0|^11.0",
-    "mockery/mockery": "^1.5|^1.6",
-    "friendsofphp/php-cs-fixer": "^2.16|^3.0"
+    "phpunit/phpunit": "^11.0|^12.0",
+    "mockery/mockery": "^1.6",
+    "friendsofphp/php-cs-fixer": "^3.66"
   },
   "autoload": {
     "psr-4": {
@@ -42,5 +41,8 @@
         "Alert": "UxWeb\\SweetAlert\\SweetAlert"
       }
     }
+  },
+  "replace": {
+    "yousefyahya/sweet-alert": "self.version"
   }
 }
